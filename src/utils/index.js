@@ -1,3 +1,4 @@
 import { http } from './http'
 import { getToken, setToken, removeToken } from './token'
-export { http, getToken, setToken, removeToken }
+import { HistoryRouter, history } from './history'
+export { http, getToken, setToken, removeToken, HistoryRouter, history }

@@ -15,7 +15,7 @@ function echartInit (node, xData, sData, title) {
     yAxis: {},
     series: [
       {
-        name: '销量',
+        name: '使用量',
         type: 'bar',
         data: sData
       }

@@ -8,7 +8,7 @@ import './App.scss'
 import Home from '@/pages/Home'
 import Article from './pages/Article'
 import Publish from './pages/Publish'
-import { HistoryRouter, history } from '@/utils/history'
+import { HistoryRouter, history } from '@/utils'
 
 // 配置路由规则
 function App () {
