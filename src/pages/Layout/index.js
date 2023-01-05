@@ -26,10 +26,11 @@ const GeekLayout = () => {
   // 这里是当前浏览器上的路径地址
   const selectedKey = location.pathname
   // 获取用户数据
-  const { userStore, loginStore } = useStore()
+  const { userStore, loginStore, channelStore } = useStore()
   useEffect(() => {
     userStore.getUserInfo()
-  }, [userStore])
+    channelStore.loadchannelList()
+  }, [userStore, channelStore])
   // login out
   const onLogout = () => {
     loginStore.loginOut()

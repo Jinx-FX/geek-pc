@@ -7,20 +7,15 @@ import locale from 'antd/es/date-picker/locale/zh_CN'
 import img404 from '@/assets/error.png'
 import { useEffect, useState } from 'react'
 import { http } from '@/utils'
+import { useStore } from '@/store'
+import { observer } from 'mobx-react-lite'
 
 const { Option } = Select
 const { RangePicker } = DatePicker
 
 const Article = () => {
   // 管理频道数据
-  const [channels, setchannels] = useState([])
-  useEffect(() => {
-    async function fetchChannels () {
-      const res = await http.get('/channels')
-      setchannels(res.data.channels)
-    }
-    fetchChannels()
-  }, [])
+  const { channelStore } = useStore()
 
   // 文章列表数据管理
   const [article, setArticleList] = useState({
@@ -159,7 +154,7 @@ const Article = () => {
         title={
           <Breadcrumb separator=">">
             <Breadcrumb.Item>
-              <Link to="/home">首页</Link>
+              <Link to="/">首页</Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>内容管理</Breadcrumb.Item>
           </Breadcrumb>
@@ -185,9 +180,9 @@ const Article = () => {
               placeholder="请选择文章频道"
               style={{ width: 120 }}
             >
-              {channels.map(channel => (<Option key={channel.id} value={channel.id}>
-                {channel.name}
-              </Option>))}
+              {channelStore.channelList.map(channel =>
+                (<Option key={channel.id} value={channel.id}>{channel.name}</Option>)
+              )}
             </Select>
           </Form.Item>
 
@@ -221,4 +216,4 @@ const Article = () => {
   )
 }
 
-export default Article
+export default observer(Article)
